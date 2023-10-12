@@ -45,6 +45,16 @@
     
     
     <script>
+// Función para refrescar la página
+function refrescarPagina() {
+  // Refrescamos la página con la reacción actual
+  window.location.href = `/?reaccion=${document.getElementById("btnReaccion").value}`;
+}
+
+// Agregamos el evento click al botón de reacción
+const botonReaccion = document.getElementById("btnReaccion");
+botonReaccion.addEventListener("click", refrescarPagina);
+
       function clicks(){
         // Obtén el botón y el elemento donde mostrar el contador
         const boton = document.getElementById('boton');
