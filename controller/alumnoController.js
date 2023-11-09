@@ -1,10 +1,9 @@
 const fetch = require('node-fetch');
 const axios = require('axios');
-const ip = require('ip');
+const ipModule = require('ip');
 
 module.exports.mostrar = (req, res) => {
-  const ip = require('ip');
-  const clientIp = ip.address(); // Obtén la dirección IP privada del cliente
+  const clientIp = ipModule.address(); // Obtén la dirección IP privada del cliente
   res.render('index', { "clientIp": clientIp });
 };
 
@@ -15,8 +14,8 @@ exports.enviar = async (req, res) => {
     const reaccion = req.body.btnReaccion;
     const colorfondo = req.body.colorFondo;
     const colorLetra = req.body.colorLetra;
-    const ip = req.body.ip;
-    const sexo =req.body.sexo; // Asegúrate de que este campo se llame 'ip' en el formulario
+    const clientIp = req.body.ip; // Asegúrate de que este campo se llame 'ip' en el formulario
+    const sexo = req.body.sexo;
 
     // Define los datos que deseas enviar a la API
     const datos = {
@@ -24,7 +23,7 @@ exports.enviar = async (req, res) => {
       reaccion,
       colorfondo,
       colorLetra,
-      ip,
+      ip: clientIp,
       sexo
     };
 
@@ -32,7 +31,6 @@ exports.enviar = async (req, res) => {
     const response = await axios.post('https://apicitaparaemergentes.onrender.com/crear', datos);
 
     // Maneja la respuesta de la API como desees
-    
 
     // Responde a la solicitud en tu controlador de aplicación
     if (response.data.mensaje === '¡Registro guardado correctamente!') {
