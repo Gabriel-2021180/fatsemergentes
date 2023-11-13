@@ -35,6 +35,11 @@
         align-items: center;
         background-color: #f0f0f0;
       }
+
+      body {
+        width: 100%;
+        height: 100%;
+      }
       #randomBox {
         padding: 20px;
         border-radius: 10px;
@@ -231,21 +236,35 @@
         return phrases[Math.floor(Math.random() * phrases.length)];
       }
 
+
       const color = getRandomColor();
       const backColor = getRandomColor();
+
+      //Color de fondo
+      document.body.style.backgroundColor = color;
+      //cardBody.style.backgroundColor = color;
+      
+
+      //Chistes
       const randomBox = document.getElementById("randomBox");
       randomBox.style.backgroundColor = backColor;
       randomBox.innerText = getRandomPhrase();
-      randomBox.style.color = color;
+      randomBox.style.color = "#FFFFFF";
 
+
+      //Titulo
       const titulo = document.getElementById("titulo");
       titulo.style.backgroundColor = backColor;
-      titulo.style.color = color;
+      titulo.style.color = "#FFFFFF";
 
+      //Mandar colores
       document.getElementById("frase").value = randomBox.innerText;
       document.getElementById("colorFondo").value =
-        randomBox.style.backgroundColor;
-      document.getElementById("colorLetra").value = randomBox.style.color;
+      document.body.style.backgroundColor;
+      
+      //Color letra
+      //document.getElementById("colorLetra").value = randomBox.style.color;
+      document.getElementById("colorLetra").value = randomBox.style.backgroundColor;
     </script>
   </body>
 </html>
